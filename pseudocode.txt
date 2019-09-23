@@ -1,0 +1,6 @@
+On page load there is a start button which will start the game
+When clicked, first question is displayed with 4 possible answers and a 30 second timer counting down to 0
+When answer is clicked, game says whether or not user is correct and displays a picture or gif. The time remaining is also stopped
+After a certain amount of time the next question is automatically displayed and the time remaining is reset to 30 seconds
+If time remaining reaches 0, game says out of time and displays correct answer. Next question is again displayed automatically
+At the end of the game, it displays how many correct, incorrect, and unanswered questions the user had. There is also a button to start the game over

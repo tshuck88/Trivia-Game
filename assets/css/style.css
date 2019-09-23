@@ -1,0 +1,27 @@
+body {
+    background-image: url("../images/background.png");
+}
+
+.container {
+    background-color: #61beec;
+    min-height: 600px;
+    margin-top: 100px;
+}
+
+#content-container {
+    min-height: 400px;
+    margin-top: 50px;
+}
+
+h1 {
+    font-size: 4.5rem;
+    text-shadow:
+		-1px -1px 0 #000,
+		1px -1px 0 #000,
+		-1px 1px 0 #000,
+		1px 1px 0 #000;
+}
+
+.btn-lg {
+    min-width: 350px;
+}
