@@ -10,7 +10,9 @@ $(document).ready(function () {
                     incorrect2: "2007 New England Patriots",
                     incorrect3: "2013 Seattle Seahawks",
                 }
-            },
+            }
+        },
+        {
             question2: {
                 text: "How many NBA championships did Michael Jordan win with the Chicago Bulls?",
                 answers: {
@@ -19,7 +21,9 @@ $(document).ready(function () {
                     correct: "6",
                     incorrect3: "3",
                 }
-            },
+            }
+        },
+        {
             question3: {
                 text: "Which is the only team to play in every soccer World Cup tournament?",
                 answers: {
@@ -28,7 +32,9 @@ $(document).ready(function () {
                     incorrect2: "USA",
                     incorrect3: "Portugal",
                 }
-            },
+            }
+        },
+        {
             question4: {
                 text: "Which NFL team won the first two Super Bowls (in 1967 and 1968)?",
                 answers: {
@@ -37,7 +43,9 @@ $(document).ready(function () {
                     incorrect2: "Pittsburgh Steelers",
                     incorrect3: "Seattle Seahawks",
                 }
-            },
+            }
+        },
+        {
             question5: {
                 text: "Who is the NBA's all-time leading scorer?",
                 answers: {
@@ -46,7 +54,9 @@ $(document).ready(function () {
                     incorrect3: "Kobe Bryant",
                     correct: "Kareem Abdul-Jabbar",
                 }
-            },
+            }
+        },
+        {
             question6: {
                 text: "Who is the MLB's all-time leader in home runs?",
                 answers: {
@@ -55,7 +65,9 @@ $(document).ready(function () {
                     incorrect2: "Mike Trout",
                     incorrect3: "Alex Rodriguez",
                 }
-            },
+            }
+        },
+        {
             question7: {
                 text: "Who is the NFL's all-time leader in touchdown passes",
                 answers: {
@@ -64,7 +76,9 @@ $(document).ready(function () {
                     incorrect3: "Aaron Rodgers",
                     correct: "Peyton Manning",
                 }
-            },
+            }
+        },
+        {
             question8: {
                 text: "Which NFL team has the most Super Bowl wins?",
                 answers: {
@@ -74,7 +88,6 @@ $(document).ready(function () {
                     incorrect3: "Oakland Raiders",
                 }
             }
-
         }
     ]
 
