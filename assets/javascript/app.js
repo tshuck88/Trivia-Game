@@ -79,7 +79,8 @@ $(document).ready(function () {
     };
 
     function startTime() {
-        if (!clockRunning) {
+        clockRunning = true;
+        if (clockRunning) {
             timeRemaining = 30;
             intervalId = setInterval(function () {
                 $("#time-text").text("Time Remaining: " + timeRemaining + " seconds");
@@ -90,14 +91,14 @@ $(document).ready(function () {
                     clearText();
                     $("#question-text").html("<h2>Out of Time!</h2>");
                     $("#answer-a").html("<h2>The correct answer was " + currentQuestion.correct + "</h2>");
+                    $("#answer-d").html('<img src="' + currentQuestion.gif + '" width="auto" height="200px">')
                     if (correctAnswer + incorrectAnswer + unAnswered === questionListCopy.length) {
-                        setTimeout(gameOver, 1000)
+                        setTimeout(gameOver, 5000)
                     } else {
-                        setTimeout(chooseNewQuestion, 1000);
+                        setTimeout(chooseNewQuestion, 5000);
                     }
                 }
             }, 1000)
-            clockRunning = true;
         }
     };
 
@@ -153,9 +154,9 @@ $(document).ready(function () {
             $("#question-text").html("<h2>Correct!</h2>");
             $("#answer-d").html('<img src="' + currentQuestion.gif + '" width="auto" height="200px">')
             if (correctAnswer + incorrectAnswer + unAnswered === questionListCopy.length) {
-                setTimeout(gameOver, 1000)
+                setTimeout(gameOver, 5000)
             } else {
-                setTimeout(chooseNewQuestion, 1000);
+                setTimeout(chooseNewQuestion, 5000);
             }
         } else {
             stopTime();
@@ -165,9 +166,9 @@ $(document).ready(function () {
             $("#answer-a").html("<h2>The correct answer was " + currentQuestion.correct + "</h2>");
             $("#answer-d").html('<img src="' + currentQuestion.gif + '" width="auto" height="200px">')
             if (correctAnswer + incorrectAnswer + unAnswered === questionListCopy.length) {
-                setTimeout(gameOver, 1000)
+                setTimeout(gameOver, 5000)
             } else {
-                setTimeout(chooseNewQuestion, 1000);
+                setTimeout(chooseNewQuestion, 5000);
             }
         }
     });
