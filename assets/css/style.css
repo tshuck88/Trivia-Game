@@ -25,3 +25,7 @@ h1 {
 .btn-lg {
     min-width: 350px;
 }
+
+#answer-a, #answer-b, #answer-c, #answer-d {
+    padding: 10px;
+} 

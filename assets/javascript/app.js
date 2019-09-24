@@ -32,7 +32,7 @@ $(document).ready(function () {
             correct: "Barry Bonds"
         },
         {
-            text: "Who is the NFL's all-time leader in touchdown passes",
+            text: "Who is the NFL's all-time leader in touchdown passes?",
             answers: ["Brett Favre", "Tom Brady", "Aaron Rodgers", "Peyton Manning"],
             correct: "Peyton Manning"
         },
@@ -56,7 +56,7 @@ $(document).ready(function () {
     function chooseNewQuestion() {
         var index = Math.floor(Math.random() * questionList.length)
         currentQuestion = questionList[index];
-        questionList.splice(index, 1)
+        questionList.splice(index, 1);
         displayNewQuestion()
     };
 
@@ -74,15 +74,42 @@ $(document).ready(function () {
     function displayNewQuestion() {
         $("#time-text").text("Time Remaining: " + timeRemaining + " seconds");
         $("#question-text").text(currentQuestion.text);
+        $("#answer-a").html('<button type="button" class="btn btn-warning btn-lg answer-button" id="answer-a-text"></button>');
         $("#answer-a-text").text(currentQuestion.answers[0]);
+        $("#answer-b").html('<button type="button" class="btn btn-warning btn-lg answer-button" id="answer-b-text"></button>');
         $("#answer-b-text").text(currentQuestion.answers[1]);
+        $("#answer-c").html('<button type="button" class="btn btn-warning btn-lg answer-button" id="answer-c-text"></button>');
         $("#answer-c-text").text(currentQuestion.answers[2]);
+        $("#answer-d").html('<button type="button" class="btn btn-warning btn-lg answer-button" id="answer-d-text"></button>');
         $("#answer-d-text").text(currentQuestion.answers[3]);
     };
 
+    function resetText(){
+        $("#answer-a").text("");
+        $("#answer-b").text("");
+        $("#answer-c").text("");
+        $("#answer-d").text("");
+    }
+
+    function displayCorrectAnswer(){
+
+    }
+
     $(document).on("click", "#start-button", function () {
         initializeGame();
-        $("#start-button").hide();
-    })
+        $("#start-button").hide();    
+    });
 
+    $(document).on("click", ".answer-button", function() {
+        if($(this).text() === currentQuestion.correct){
+            correctAnswer++;
+            $("#question-text").html("<h2>Correct!</h2>");
+            resetText();
+        } else {
+            incorrectAnswer++;
+            $("#question-text").html("<h2>Nope!</h2>");
+            resetText();
+            $("#answer-a").html("<h2>The correct answer was " + currentQuestion.correct + "</h2>");
+        }
+    });
 });
