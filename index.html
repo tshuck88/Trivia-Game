@@ -20,15 +20,19 @@
             </div>
         </div>
         <div class="row">
-            <div class="col d-flex justify-content-center align-items-center" id="content-container">
+            <div class="col text-center" id="content-container">
                 <div id="time-text"></div>
+                <div id="finished-text"></div>
+                <div id="correct-text"></div>
+                <div id="incorrect-text"></div>
+                <div id="unanswered-text"></div>
                 <div id="question-text"></div>
                 <div id="answer-a-text"></div>
                 <div id="answer-b-text"></div>
                 <div id="answer-c-text"></div>
                 <div id="answer-d-text"></div>
                 <div id="start-button-container">
-                    <button type="button" class="btn btn-warning btn-lg">Start Game</button>
+                    <button type="button" class="btn btn-warning btn-lg" id="start-button">Start Game</button>
                 </div>
             </div>
         </div>
@@ -40,8 +44,8 @@
 
 
 
-
-
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha256-pasqAKBDmFT4eHoN2ndd6lN370kFiGUFyTiUHWhU7k8=" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
         crossorigin="anonymous"></script>
