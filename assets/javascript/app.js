@@ -52,6 +52,7 @@ $(document).ready(function () {
     var clockRunning = false;
     var gameReset;
     var gameOver;
+    var intervalId;
     
     function chooseNewQuestion() {
         var index = Math.floor(Math.random() * questionList.length)
@@ -67,9 +68,31 @@ $(document).ready(function () {
         correctAnswer = 0;
         incorrectAnswer = 0;
         unAnswered = 0;
-        clockRunning = true;
         chooseNewQuestion();
+        startTime();
     };
+
+    function startTime(){
+        if(!clockRunning){
+            intervalId = setInterval(function(){
+                $("#time-text").text("Time Remaining: " + timeRemaining + " seconds");
+                timeRemaining--;
+                if(timeRemaining <= 0){
+                    stopTime();
+                    unAnswered++;
+                    clearText();
+                    $("#question-text").html("<h2>Out of Time!</h2>");
+                    $("#answer-a").html("<h2>The correct answer was " + currentQuestion.correct + "</h2>");
+                }
+            }, 1000)
+            clockRunning = true;
+        }
+    };
+
+    function stopTime(){
+        clearInterval(intervalId)
+        clockRunning = false;
+    }
 
     function displayNewQuestion() {
         $("#time-text").text("Time Remaining: " + timeRemaining + " seconds");
@@ -84,15 +107,11 @@ $(document).ready(function () {
         $("#answer-d-text").text(currentQuestion.answers[3]);
     };
 
-    function resetText(){
+    function clearText(){
         $("#answer-a").text("");
         $("#answer-b").text("");
         $("#answer-c").text("");
         $("#answer-d").text("");
-    }
-
-    function displayCorrectAnswer(){
-
     }
 
     $(document).on("click", "#start-button", function () {
@@ -104,11 +123,11 @@ $(document).ready(function () {
         if($(this).text() === currentQuestion.correct){
             correctAnswer++;
             $("#question-text").html("<h2>Correct!</h2>");
-            resetText();
+            clearText();
         } else {
             incorrectAnswer++;
             $("#question-text").html("<h2>Nope!</h2>");
-            resetText();
+            clearText();
             $("#answer-a").html("<h2>The correct answer was " + currentQuestion.correct + "</h2>");
         }
     });
