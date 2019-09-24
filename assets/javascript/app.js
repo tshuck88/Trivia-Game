@@ -50,15 +50,14 @@ $(document).ready(function () {
     var unAnswered;
     var timeRemaining;
     var clockRunning = false;
-    var gameReset;
-    var isGameOver;
     var intervalId;
-    
+
     function chooseNewQuestion() {
         var index = Math.floor(Math.random() * questionList.length)
         currentQuestion = questionList[index];
         questionList.splice(index, 1);
-        displayNewQuestion()
+        clearText();
+        displayNewQuestion();
         startTime();
     };
 
@@ -71,25 +70,30 @@ $(document).ready(function () {
         chooseNewQuestion();
     };
 
-    function startTime(){
-        if(!clockRunning){
-            intervalId = setInterval(function(){
+    function startTime() {
+        if (!clockRunning) {
+            timeRemaining = 30;
+            intervalId = setInterval(function () {
                 $("#time-text").text("Time Remaining: " + timeRemaining + " seconds");
                 timeRemaining--;
-                if(timeRemaining < 0){
+                if (timeRemaining < 0) {
                     stopTime();
                     unAnswered++;
                     clearText();
                     $("#question-text").html("<h2>Out of Time!</h2>");
                     $("#answer-a").html("<h2>The correct answer was " + currentQuestion.correct + "</h2>");
-                    setTimeout(chooseNewQuestion, 5000);
+                    if (correctAnswer + incorrectAnswer + unAnswered === questionListCopy.length) {
+                        setTimeout(gameOver, 1000)
+                    } else {
+                        setTimeout(chooseNewQuestion, 1000);
+                    }
                 }
             }, 1000)
             clockRunning = true;
         }
     };
 
-    function stopTime(){
+    function stopTime() {
         clearInterval(intervalId)
         clockRunning = false;
     };
@@ -107,36 +111,54 @@ $(document).ready(function () {
         $("#answer-d-text").text(currentQuestion.answers[3]);
     };
 
-    function clearText(){
+    function clearText() {
+        $("#finished-text").text("")
+        $("#correct-text").text("")
+        $("#incorrect-text").text("")
+        $("#unanswered-text").text("")
+        $("#question-text").text("")
         $("#answer-a").text("");
         $("#answer-b").text("");
         $("#answer-c").text("");
         $("#answer-d").text("");
     };
 
-    function gameOver(){
-        
+    function gameOver() {
+        clearText();
+        $("#finished-text").text("All done, here's how you did:");
+        $("#correct-text").text("Correct Answers: " + correctAnswer);
+        $("#incorrect-text").text("Incorrect Answers: " + incorrectAnswer);
+        $("#unanswered-text").text("Unanswered: " + unAnswered);
+        $("#start-button").show().text("Start Over?");
     }
 
     $(document).on("click", "#start-button", function () {
         initializeGame();
-        $("#start-button").hide();    
+        $("#start-button").hide();
     });
 
-    $(document).on("click", ".answer-button", function() {
-        if($(this).text() === currentQuestion.correct){
+    $(document).on("click", ".answer-button", function () {
+        if ($(this).text() === currentQuestion.correct) {
             stopTime();
             correctAnswer++;
-            $("#question-text").html("<h2>Correct!</h2>");
             clearText();
-            setTimeout(chooseNewQuestion, 1000);
+            $("#question-text").html("<h2>Correct!</h2>");
+            if (correctAnswer + incorrectAnswer + unAnswered === questionListCopy.length) {
+                setTimeout(gameOver, 1000)
+            } else {
+                setTimeout(chooseNewQuestion, 1000);
+            }
         } else {
             stopTime();
             incorrectAnswer++;
-            $("#question-text").html("<h2>Nope!</h2>");
             clearText();
+            $("#question-text").html("<h2>Nope!</h2>");
             $("#answer-a").html("<h2>The correct answer was " + currentQuestion.correct + "</h2>");
-            setTimeout(chooseNewQuestion, 1000);
+            if (correctAnswer + incorrectAnswer + unAnswered === questionListCopy.length) {
+                setTimeout(gameOver, 1000)
+            } else {
+                setTimeout(chooseNewQuestion, 1000);
+            }
         }
     });
 });

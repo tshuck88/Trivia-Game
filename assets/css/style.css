@@ -26,6 +26,6 @@ h1 {
     min-width: 350px;
 }
 
-#answer-a, #answer-b, #answer-c, #answer-d {
+#answer-a, #answer-b, #answer-c, #answer-d, #finished-text {
     padding: 10px;
-} 
+}
