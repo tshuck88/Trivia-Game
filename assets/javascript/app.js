@@ -2,44 +2,52 @@ $(document).ready(function () {
 
     var questionList = [
         {
-            text: "Which is the only NFL team to go a whole season undefeated, including the Super Bowl?",
+            question: "Which is the only NFL team to go a whole season undefeated, including the Super Bowl?",
             answers: ["1972 Miami Dolphins", "1985 Chicago Bears", "2007 New England Patriots", "2013 Seattle Seahawks"],
-            correct: "1972 Miami Dolphins"
+            correct: "1972 Miami Dolphins",
+            gif: "assets/images/miami-dolphins.gif"
         },
         {
-            text: "How many NBA championships did Michael Jordan win with the Chicago Bulls?",
+            question: "How many NBA championships did Michael Jordan win with the Chicago Bulls?",
             answers: ["10", "1", "6", "3"],
-            correct: "6"
+            correct: "6",
+            gif: "assets/images/michael-jordan.gif"
         },
         {
-            text: "Which is the only team to play in every soccer World Cup tournament?",
+            question: "Which is the only team to play in every soccer World Cup tournament?",
             answers: ["Spain", "Brazil", "USA", "Portugal"],
-            correct: "Brazil"
+            correct: "Brazil",
+            gif: "assets/images/brazil.gif"
         },
         {
-            text: "Which NFL team won the first two Super Bowls (in 1967 and 1968)?",
+            question: "Which NFL team won the first two Super Bowls (in 1967 and 1968)?",
             answers: ["Dallas Cowboys", "Greenbay Packers", "Pittsburgh Steelers", "Seattle Seahawks"],
-            correct: "Greenbay Packers"
+            correct: "Greenbay Packers",
+            gif: "assets/images/green-bay-packers.gif"
         },
         {
-            text: "Who is the NBA's all-time leading scorer?",
+            question: "Who is the NBA's all-time leading scorer?",
             answers: ["Michael Jordan", "LeBron James", "Kobe Bryant", "Kareem Abdul-Jabbar"],
-            correct: "Kareem Abdul-Jabbar"
+            correct: "Kareem Abdul-Jabbar",
+            gif: "assets/images/kareem-abdul-jabbar.gif"
         },
         {
-            text: "Who is the MLB's all-time leader in home runs?",
+            question: "Who is the MLB's all-time leader in home runs?",
             answers: ["Barry Bonds", "Babe Ruth", "Mike Trout", "Alex Rodriguez"],
-            correct: "Barry Bonds"
+            correct: "Barry Bonds",
+            gif: "assets/images/barry-bonds.gif"
         },
         {
-            text: "Who is the NFL's all-time leader in touchdown passes?",
+            question: "Who is the NFL's all-time leader in touchdown passes?",
             answers: ["Brett Favre", "Tom Brady", "Aaron Rodgers", "Peyton Manning"],
-            correct: "Peyton Manning"
+            correct: "Peyton Manning",
+            gif: "assets/images/peyton-manning.gif"
         },
         {
-            text: "Which NFL team has the most Super Bowl wins?",
+            question: "Which NFL team has the most Super Bowl wins?",
             answers: ["Seattle Seahawks", "San Francisco 49ers", "New England Patriots", "Oakland Raiders"],
-            correct: "New England Patriots"
+            correct: "New England Patriots",
+            gif: "assets/images/new-england-patriots.gif"
         }
     ];
 
@@ -100,7 +108,7 @@ $(document).ready(function () {
 
     function displayNewQuestion() {
         $("#time-text").text("Time Remaining: " + timeRemaining + " seconds");
-        $("#question-text").text(currentQuestion.text);
+        $("#question-text").text(currentQuestion.question);
         $("#answer-a").html('<button type="button" class="btn btn-warning btn-lg answer-button" id="answer-a-text"></button>');
         $("#answer-a-text").text(currentQuestion.answers[0]);
         $("#answer-b").html('<button type="button" class="btn btn-warning btn-lg answer-button" id="answer-b-text"></button>');
@@ -143,6 +151,7 @@ $(document).ready(function () {
             correctAnswer++;
             clearText();
             $("#question-text").html("<h2>Correct!</h2>");
+            $("#answer-d").html('<img src="' + currentQuestion.gif + '" width="auto" height="200px">')
             if (correctAnswer + incorrectAnswer + unAnswered === questionListCopy.length) {
                 setTimeout(gameOver, 1000)
             } else {
@@ -154,6 +163,7 @@ $(document).ready(function () {
             clearText();
             $("#question-text").html("<h2>Nope!</h2>");
             $("#answer-a").html("<h2>The correct answer was " + currentQuestion.correct + "</h2>");
+            $("#answer-d").html('<img src="' + currentQuestion.gif + '" width="auto" height="200px">')
             if (correctAnswer + incorrectAnswer + unAnswered === questionListCopy.length) {
                 setTimeout(gameOver, 1000)
             } else {
