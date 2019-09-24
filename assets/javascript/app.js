@@ -64,9 +64,10 @@ $(document).ready(function () {
         var index = Math.floor(Math.random() * questionList.length)
         currentQuestion = questionList[index];
         questionList.splice(index, 1);
+        startTime();
         clearText();
         displayNewQuestion();
-        startTime();
+
     };
 
     function initializeGame() {
@@ -80,26 +81,24 @@ $(document).ready(function () {
 
     function startTime() {
         clockRunning = true;
-        if (clockRunning) {
-            timeRemaining = 30;
-            intervalId = setInterval(function () {
-                $("#time-text").text("Time Remaining: " + timeRemaining + " seconds");
-                timeRemaining--;
-                if (timeRemaining < 0) {
-                    stopTime();
-                    unAnswered++;
-                    clearText();
-                    $("#question-text").html("<h2>Out of Time!</h2>");
-                    $("#answer-a").html("<h2>The correct answer was " + currentQuestion.correct + "</h2>");
-                    $("#answer-d").html('<img src="' + currentQuestion.gif + '" width="auto" height="200px">')
-                    if (correctAnswer + incorrectAnswer + unAnswered === questionListCopy.length) {
-                        setTimeout(gameOver, 5000)
-                    } else {
-                        setTimeout(chooseNewQuestion, 5000);
-                    }
+        timeRemaining = 30;
+        intervalId = setInterval(function () {
+            $("#time-text").text("Time Remaining: " + timeRemaining + " seconds");
+            timeRemaining--;
+            if (timeRemaining < 0) {
+                stopTime();
+                unAnswered++;
+                clearText();
+                $("#question-text").html("<h2>Out of Time!</h2>");
+                $("#answer-a").html("<h2>The correct answer was " + currentQuestion.correct + "</h2>");
+                $("#answer-d").html('<img src="' + currentQuestion.gif + '" width="auto" height="200px">')
+                if (correctAnswer + incorrectAnswer + unAnswered === questionListCopy.length) {
+                    setTimeout(gameOver, 5000)
+                } else {
+                    setTimeout(chooseNewQuestion, 5000);
                 }
-            }, 1000)
-        }
+            }
+        }, 1000)
     };
 
     function stopTime() {
