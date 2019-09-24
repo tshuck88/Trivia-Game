@@ -51,7 +51,7 @@ $(document).ready(function () {
     var timeRemaining;
     var clockRunning = false;
     var gameReset;
-    var gameOver;
+    var isGameOver;
     var intervalId;
     
     function chooseNewQuestion() {
@@ -59,17 +59,16 @@ $(document).ready(function () {
         currentQuestion = questionList[index];
         questionList.splice(index, 1);
         displayNewQuestion()
+        startTime();
     };
 
     function initializeGame() {
-        questionListCopy
         questionList = questionListCopy.slice(0)
         timeRemaining = 30;
         correctAnswer = 0;
         incorrectAnswer = 0;
         unAnswered = 0;
         chooseNewQuestion();
-        startTime();
     };
 
     function startTime(){
@@ -77,12 +76,13 @@ $(document).ready(function () {
             intervalId = setInterval(function(){
                 $("#time-text").text("Time Remaining: " + timeRemaining + " seconds");
                 timeRemaining--;
-                if(timeRemaining <= 0){
+                if(timeRemaining < 0){
                     stopTime();
                     unAnswered++;
                     clearText();
                     $("#question-text").html("<h2>Out of Time!</h2>");
                     $("#answer-a").html("<h2>The correct answer was " + currentQuestion.correct + "</h2>");
+                    setTimeout(chooseNewQuestion, 5000);
                 }
             }, 1000)
             clockRunning = true;
@@ -92,7 +92,7 @@ $(document).ready(function () {
     function stopTime(){
         clearInterval(intervalId)
         clockRunning = false;
-    }
+    };
 
     function displayNewQuestion() {
         $("#time-text").text("Time Remaining: " + timeRemaining + " seconds");
@@ -112,6 +112,10 @@ $(document).ready(function () {
         $("#answer-b").text("");
         $("#answer-c").text("");
         $("#answer-d").text("");
+    };
+
+    function gameOver(){
+        
     }
 
     $(document).on("click", "#start-button", function () {
@@ -121,14 +125,18 @@ $(document).ready(function () {
 
     $(document).on("click", ".answer-button", function() {
         if($(this).text() === currentQuestion.correct){
+            stopTime();
             correctAnswer++;
             $("#question-text").html("<h2>Correct!</h2>");
             clearText();
+            setTimeout(chooseNewQuestion, 1000);
         } else {
+            stopTime();
             incorrectAnswer++;
             $("#question-text").html("<h2>Nope!</h2>");
             clearText();
             $("#answer-a").html("<h2>The correct answer was " + currentQuestion.correct + "</h2>");
+            setTimeout(chooseNewQuestion, 1000);
         }
     });
 });
