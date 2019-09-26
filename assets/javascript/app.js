@@ -87,7 +87,7 @@ $(document).ready(function () {
         intervalId = setInterval(function () { // runs the follow code by the interval amount of 1 second
             timeRemaining--; // decreases time
             $("#time-text").text("Time Remaining: " + timeRemaining + " seconds"); // updates time remaining game text
-            if (timeRemaining < 0) { // if time remaining reaches 0 
+            if (timeRemaining <= 0) { // if time remaining reaches 0 
                 stopTime();
                 unAnswered++; // increases unanswered count by 1
                 clearText();
